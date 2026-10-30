@@ -1,6 +1,6 @@
 # The s-family: naming and app icons
 
-Family-level note for sView, sNotate, sCapture, sWalk and scommon, and for the uSuite organization that publishes them. Proposed 2026-10-25 in the sview repository; moved here with the shared artwork on 2026-10-30.
+Family-level note for sView, sNotate, sCapture, sWalk, sPaste and scommon, and for the uSuite organization that publishes them. Proposed 2026-10-25 in the sview repository; moved here with the shared artwork on 2026-10-30.
 
 ## What the s means
 
@@ -18,10 +18,11 @@ One shared mark, and per member a colour and a small accent. The mark is a lower
 | sNotate | amber `#ff9f1a` to `#d97a00` | a filled dot with a white `1` at the s's lower terminal | the step counter, the one annotation that defines the app |
 | sCapture | green `#1fbf75` to `#15895a` | a reticle (thin circle with four ticks) in deep green `#0b5c3a`, centred on the s's upper terminal | aiming, the shutter |
 | sWalk | violet `#8b5cf6` to `#6d28d9` | a white dot with a violet play triangle, bottom right of the s, ringed in violet like sNotate's dot | playback of a walk |
+| sPaste | grape `#9b59b6` to `#6c3483` | a thin white clipboard frame around the s with its clip on top, the weight of sView's brackets | the clipboard; a calm purple kept apart from sWalk's violet |
 | scommon | slate `#64748b` to `#475569` | thin `{ }` either side of the s, the weight of sView's brackets | shared code, not an app |
 | uSuite (the organization) | graphite `#2b2f36` to `#1b1e23` | three dots in a row under the s, in sView blue, sNotate amber and sCapture green | the family; the Dots of the evidence chain |
 
-The three app hues sit roughly 120 degrees apart so the Dock icons are distinguishable at a glance; sWalk's violet sits between blue and amber on the far side, and scommon and uSuite are neutral because neither is an app in the Dock and the menu bar icon of sCapture reads as part of the set. A lower-saturation variant of each colour is the accent colour inside the app (selection, counters, toasts), so the icon and the UI agree.
+The three app hues sit roughly 120 degrees apart so the Dock icons are distinguishable at a glance; sWalk's violet sits between blue and amber on the far side, sPaste's grape is a muted red-violet a step further round so the two purples do not blur together, and scommon and uSuite are neutral because neither is an app in the Dock and the menu bar icon of sCapture reads as part of the set. A lower-saturation variant of each colour is the accent colour inside the app (selection, counters, toasts), so the icon and the UI agree.
 
 If the Dots idea should show, the accent is the place: each app's dot (viewfinder, counter, reticle) is one Dot, and the three together connect into the evidence chain. Nothing more literal than that.
 
@@ -42,7 +43,7 @@ Because the floor is macOS 26 there is no legacy `.icns` or multi-size PNG set t
 
 ## Files in this folder
 
-`s.svg` is the source of the glyph for every member; each app repository keeps a copy in its own `brand/`. The backgrounds and accents of sWalk, scommon and uSuite live here, sView's and sNotate's in their repositories, sCapture's in its repository. `render.swift <background.svg> <accent.svg> <out.png> [--full-bleed] [--size N]` draws one icon in the classic tile, or filling the square with `--full-bleed` for the organization avatar; the apps keep their own `make icon`. Rendered: `usuite-avatar-1024.png` (full bleed, the organization avatar), `scommon-1024.png`, `swalk-1024.png`, and `family-row.png` with the five tiles in the order sView, sNotate, sCapture, sWalk, scommon for the organization's profile page.
+`s.svg` is the source of the glyph for every member; each app repository keeps a copy in its own `brand/`. The backgrounds and accents of sWalk, scommon and uSuite live here, with a copy of sPaste's; sView's, sNotate's, sCapture's and sPaste's own are in their repositories. `render.swift <background.svg> <accent.svg> <out.png> [--full-bleed] [--size N]` draws one icon in the classic tile, or filling the square with `--full-bleed` for the organization avatar; the apps keep their own `make icon`. Rendered: `usuite-avatar-1024.png` (full bleed, the organization avatar), `scommon-1024.png`, `swalk-1024.png`, `spaste-1024.png`, and `family-row.png` with the six tiles in the order sView, sNotate, sCapture, sWalk, sPaste, scommon for the organization's profile page.
 
 ## Menu bar icon (sCapture only)
 
