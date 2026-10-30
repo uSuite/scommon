@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- scommon: thin braces either side of the s, the shared code. -->
+  <g fill="none" stroke="#ffffff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 290 250 C 245 250 240 275 240 320 V 455 C 240 490 225 512 195 512 C 225 512 240 534 240 569 V 704 C 240 749 245 774 290 774"/>
+    <path d="M 734 250 C 779 250 784 275 784 320 V 455 C 784 490 799 512 829 512 C 799 512 784 534 784 569 V 704 C 784 749 779 774 734 774"/>
+  </g>
+</svg>

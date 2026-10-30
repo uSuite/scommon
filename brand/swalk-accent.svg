@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- sWalk: a filled play triangle in a dot, bottom right of the s; a violet
+       ring keeps the white dot apart from the stroke it overlaps. -->
+  <circle cx="700" cy="700" r="126" fill="#ffffff" stroke="#773fe2" stroke-width="28"/>
+  <path d="M 674 646 L 674 754 L 766 700 Z" fill="#6d28d9" stroke="#6d28d9" stroke-width="16"
+        stroke-linejoin="round"/>
+</svg>

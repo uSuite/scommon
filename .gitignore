@@ -1,0 +1,14 @@
+# macos stuff
+.DS_Store
+
+# swift
+.build/
+.swiftpm/
+build/
+xcuserdata/
+
+# scratch PoCs are throwaway
+scratch/
+
+# the session log is local, not published
+docs/local/

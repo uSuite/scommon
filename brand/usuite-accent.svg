@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- uSuite: three dots in a row under the s, one per app colour (sView,
+       sNotate, sCapture), the Dots of the evidence chain. -->
+  <circle cx="412" cy="846" r="34" fill="#1e5eff"/>
+  <circle cx="512" cy="846" r="34" fill="#ff9f1a"/>
+  <circle cx="612" cy="846" r="34" fill="#1fbf75"/>
+</svg>
