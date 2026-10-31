@@ -6,7 +6,9 @@ import Foundation
 /// (or one with the files at its root) and lets the app check each file
 /// before anything changes, then keeps every replaced file as
 /// `<name>.bak`. From sView's and sNotate's `ConfigExport` and sNotate's
-/// `ConfigImport`.
+/// `ConfigImport`. `ditto` only ever touches the temporary folder, which is
+/// in the container in a sandboxed app; the app itself copies the zip to
+/// and from the place the user chose (DECISIONS 2026-10-31).
 public struct ConfigArchive: Sendable, Equatable {
     /// The folder name in the zip and the start of the default file name.
     public let app: String
@@ -146,20 +148,29 @@ public struct ConfigArchive: Sendable, Equatable {
                     to: folder.appendingPathComponent(name)
                 )
             }
-            try FileManager.default.createDirectory(
-                at: destination.deletingLastPathComponent(),
-                withIntermediateDirectories: true
-            )
         } catch {
             throw .zipFailed(error.localizedDescription)
         }
         // No resource forks, extended attributes or quarantine: those become
         // ._ files in a zip, which other machines would unpack as clutter.
+        let zip = staging.appendingPathComponent("\(app).zip")
         if let failure = Self.ditto([
             "-c", "-k", "--norsrc", "--noextattr", "--noqtn", "--keepParent",
-            folder.path, destination.path,
+            folder.path, zip.path,
         ]) {
             throw .zipFailed(failure)
+        }
+        do {
+            try FileManager.default.createDirectory(
+                at: destination.deletingLastPathComponent(),
+                withIntermediateDirectories: true
+            )
+            if FileManager.default.fileExists(atPath: destination.path) {
+                try FileManager.default.removeItem(at: destination)
+            }
+            try FileManager.default.copyItem(at: zip, to: destination)
+        } catch {
+            throw .zipFailed(error.localizedDescription)
         }
         return present.map { "\(app)/\($0)" }
     }
@@ -173,15 +184,23 @@ public struct ConfigArchive: Sendable, Equatable {
     ) async throws(Failure) -> [File] {
         let staging = FileManager.default.temporaryDirectory
             .appendingPathComponent("\(app)-import-\(UUID().uuidString)")
+        let unpacked = staging.appendingPathComponent("unpacked")
+        let copy = staging.appendingPathComponent("in.zip")
         defer { try? FileManager.default.removeItem(at: staging) }
-        if let failure = Self.ditto(["-x", "-k", zip.path, staging.path]) {
+        do {
+            try FileManager.default.createDirectory(at: staging, withIntermediateDirectories: true)
+            try FileManager.default.copyItem(at: zip, to: copy)
+        } catch {
+            throw .unzipFailed(error.localizedDescription)
+        }
+        if let failure = Self.ditto(["-x", "-k", copy.path, unpacked.path]) {
             throw .unzipFailed(failure)
         }
-        let nested = staging.appendingPathComponent(app)
+        let nested = unpacked.appendingPathComponent(app)
         var isDirectory: ObjCBool = false
         let folder = FileManager.default.fileExists(atPath: nested.path, isDirectory: &isDirectory) && isDirectory.boolValue
             ? nested
-            : staging
+            : unpacked
         var files: [File] = []
         for name in fileNames {
             guard let data = FileManager.default.contents(atPath: folder.appendingPathComponent(name).path) else {

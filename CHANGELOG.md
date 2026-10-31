@@ -2,6 +2,10 @@
 
 Versions follow semver: a patch for a fix, a minor for a new key or type. Each release lists what a consumer notices; docs/DECISIONS.md has the reasoning.
 
+## 0.4.0 (2026-10-31)
+
+For the move into the App Sandbox. `Sandbox.isActive` tells a sandboxed process from a plain run. `Bookmarks` keeps the folders a user granted, one line each in `~/.config/<app>/bookmarks`, security-scoped in the sandbox, with `folder(covering:)`, `startAccess(covering:)` and `withAccess(to:)`. `FolderAccess.ensureReadable(_:ask:)` returns a folder once it can be listed, asking through the app's own panel only when no grant or bookmark covers it, and remembers the answer. `ConfigArchive` zips and unzips in the temporary folder and copies the zip itself, so export and import work from a sandbox; nothing changes for a caller. The family brand row has sPaste.
+
 ## 0.3.1 (2026-10-30)
 
 No code change. `brand/` holds the family's branding: the note on the s mark and its colours, the SVG layers and rendered icons of the uSuite organization, scommon and sWalk, and `render.swift` to draw any of them.
