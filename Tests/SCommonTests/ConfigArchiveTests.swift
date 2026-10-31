@@ -80,6 +80,16 @@ struct ConfigArchiveTests {
         #expect(entries == ["demo/", "demo/config", "demo/keymap"])
     }
 
+    @Test func exportReplacesAFileAtThePathTheUserNamed() async throws {
+        let temp = try TempFolder()
+        let paths = try paths(temp)
+        let zip = temp.url.appendingPathComponent("settings.zip")
+        try Data("old".utf8).write(to: zip)
+        _ = try await archive.export(from: paths, to: zip)
+        let files = try await archive.inspect(zip) { _, _ in [] }
+        #expect(files.map(\.name) == ["config", "keymap"])
+    }
+
     @Test func nothingToExportIsAnError() async throws {
         let temp = try TempFolder()
         let paths = ConfigPaths(directory: temp.url.appendingPathComponent("empty"))
