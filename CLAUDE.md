@@ -1,6 +1,6 @@
 # scommon
 
-The shared Swift package of the s-family (sView, sNotate, sCapture, later sWalk): folder scanning and watching, natural sort, the `poc-` case and file-name parsing, the `key value` config parser and `KeyValueSettings`, the keymap grammar and matcher, `ConfigPaths` for `~/.config/<app>/`. Swift 6.2, Foundation, Dispatch, CoreServices, UniformTypeIdentifiers and CoreGraphics only, macOS 26, strict concurrency, no third-party packages. Extracted from sView (develop 24ffd9d) on 2026-10-27. Published as `uSuite/scommon` on GitHub; consumers use a sibling `../scommon` checkout when there is one, else the GitHub URL from a minimum version (docs/DECISIONS.md).
+The shared Swift package of the s-family (sView, sNotate, sCapture, later sWalk): folder scanning and watching, natural sort, the `poc-` case and file-name parsing, the `key value` config parser and `KeyValueSettings`, the keymap grammar and matcher, `ConfigPaths` for `~/.config/<app>/`, `ConfigArchive`, and for the App Sandbox `Sandbox`, `Bookmarks` and `FolderAccess`. Swift 6.2, Foundation, Dispatch, CoreServices, UniformTypeIdentifiers and CoreGraphics only, macOS 26, strict concurrency, no third-party packages. Extracted from sView (develop 24ffd9d) on 2026-10-27. Published as `uSuite/scommon` on GitHub; consumers use a sibling `../scommon` checkout when there is one, else the GitHub URL from a minimum version (docs/DECISIONS.md).
 
 ## Commands
 
